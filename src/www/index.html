@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS na straně klienta</title>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" type="text/css" href="script/style.css" />
+
+</head>
+<body onload="addCount('...')">
+	<table>
+		<tr>
+			<td id="outcome-cell" colspan="4" onclick="copy()" style="text-align: right;">
+				<span id="prev">0</span><br>
+				<span id="outcome">0</span>
+			</td>
+		</tr>
+		<tr>
+			<td onclick="percent()">%</td>
+			<td onclick="CE()">CE</td>
+			<td onclick="C()">C</td>
+			<td onclick="backspace()"><[X]</td>
+		</tr>
+		<tr>
+			<td onclick="reverse()">1/<i>x</i></td>
+			<td onclick="sqr()"><i>x</i><sup>2</sup></td>
+			<td onclick="sqrt()"><i>x</i><sup>1/2</sup></td>
+			<td onclick="addOperation(this)">/</td>
+		</tr>
+		<tr>
+			<td onclick="writeNum(this)">7</td>
+			<td onclick="writeNum(this)">8</td>
+			<td onclick="writeNum(this)">9</td>
+			<td onclick="addOperation(this)">*</td>
+		</tr>
+		<tr>
+			<td onclick="writeNum(this)">4</td>
+			<td onclick="writeNum(this)">5</td>
+			<td onclick="writeNum(this)">6</td>
+			<td onclick="addOperation(this)">-</td>
+		</tr>
+		<tr>
+			<td onclick="writeNum(this)">1</td>
+			<td onclick="writeNum(this)">2</td>
+			<td onclick="writeNum(this)">3</td>
+			<td onclick="addOperation(this)">+</td>
+		</tr>
+		<tr>
+			<td onclick="plusMinus()">+/-</td>
+			<td onclick="writeNum(this)">0</td>
+			<td onclick="addDot()">.</td>
+			<td onclick="equals()">=</td>
+		</tr>
+	</table>
+
+	<br>
+
+	<div id="count"></div>
+
+	<script src="script/index.js"></script>
+</body>
+</html>

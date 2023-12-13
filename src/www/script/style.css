@@ -1,0 +1,19 @@
+
+table, td {
+    border: solid 2px black;
+    min-width: 3em;
+    max-width: 3em;
+    height: 2rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+td:hover {
+    border: solid 2px red;
+    background-color: orange;
+}
+
+#outcome-cell {
+    height: 4rem;
+    font-size: 1.6em;
+}
