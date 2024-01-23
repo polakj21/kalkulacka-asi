@@ -57,6 +57,7 @@ function equals () {
 	outcome.innerHTML = prev.innerHTML; 
 }
 
+
 function setPrev() {
 	switch (operation) {
 		case null:
