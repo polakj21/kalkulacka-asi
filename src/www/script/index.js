@@ -1,14 +1,43 @@
-const outcome = document.getElementById('outcome');
-const prev = document.getElementById('prev');
-const count = document.getElementById('count');
+$(document).ready(() => {
+	addCount('...');
+
+	$('#c').click(() => C());
+	$('#ce').click(() => CE());
+	$('#backspace').click(() => backspace());
+	$('#percent').click(() => percent());
+
+	$('#sqr').click(() => sqr());
+	$('#sqrt').click(() => sqrt());
+	$('#reverse').click(() => reverse());
+
+	$('#div').click(() => addOperation($('#div')));
+	$('#mul').click(() => addOperation($('#mul')));
+	$('#min').click(() => addOperation($('#min')));
+	$('#plu').click(() => addOperation($('#plu')));
+
+	$('#plumin').click(() => plusMinus());
+	$('#dot').click(() => addDot());
+	$('#equals').click(() => equals());
+
+	$('#1').click(() => writeNum($('#1')));
+	$('#2').click(() => writeNum($('#2')));
+	$('#3').click(() => writeNum($('#3')));
+	$('#4').click(() => writeNum($('#4')));
+	$('#5').click(() => writeNum($('#5')));
+	$('#6').click(() => writeNum($('#6')));
+	$('#7').click(() => writeNum($('#7')));
+	$('#8').click(() => writeNum($('#8')));
+	$('#9').click(() => writeNum($('#9')));
+	$('#0').click(() => writeNum($('#0')));
+});
 		
 let operation = null;
 
 function writeNum (tlacitko) {
-	if (outcome.innerHTML == "0")
-		outcome.innerHTML = "";
-	outcome.innerHTML += tlacitko.innerHTML;
-	addCount(tlacitko.innerHTML);
+	if ($('#outcome').html() == "0")
+		$('#outcome').html('');
+	$('#outcome').html($('#outcome').html() + tlacitko.html());
+	addCount(tlacitko.html());
 }
 
 function addCount(num) {
@@ -26,98 +55,98 @@ function addCount(num) {
 }
 
 function addDot () {
-	if (outcome.innerHTML.indexOf(".") == -1)
-		outcome.innerHTML += ".";
+	if ($("#outcome").html().indexOf(".") == -1)
+		$('#outcome').html($('#outcome').html() + ".");
 }
 
 function plusMinus () {
-	if (outcome.innerHTML != "0") {
-		if (outcome.innerHTML[0] == "-") {
-			outcome.innerHTML = outcome.innerHTML.substring(1);
+	if ($("#outcome").html() != "0") {
+		if ($("#outcome").html()[0] == "-") {
+			$('#outcome').html($("#outcome").html().substring(1));
 		} else {
-			outcome.innerHTML = "-" + outcome.innerHTML;
+			$("#outcome").html("-" + $("#outcome").html());
 		}
 	}
 }
 
 function backspace () {
-	outcome.innerHTML = outcome.innerHTML.substring(0, outcome.innerHTML.length-1);
-	if (outcome.innerHTML == "" || outcome.innerHTML == "-")
-		outcome.innerHTML = "0";
+	$("#outcome").html($("#outcome").html().substring(0, $("#outcome").html().length-1));
+	if ($("#outcome").html() == "" || $("#outcome").html() == "-")
+		$("#outcome").html("0");
 }
 
 function addOperation (tlacitko) {
 	setPrev();
-	operation = tlacitko.innerHTML;
-	outcome.innerHTML = 0;
+	operation = tlacitko.html();
+	$("#outcome").html("0");
 }
 
 function equals () {
 	setPrev();
-	outcome.innerHTML = prev.innerHTML; 
+	$("#outcome").html($("#prev").html()); 
 }
 
 
 function setPrev() {
 	switch (operation) {
 		case null:
-			prev.innerHTML = outcome.innerHTML;
+			$("#prev").html($("#outcome").html());
 			break;
 	
 		case "+":
-			prev.innerHTML = String(Number(prev.innerHTML) + Number(outcome.innerHTML));
+			$("#prev").html(String(Number($("#prev").html()) + Number($("#outcome").html())));
 			break;
 
 		case "-":
-			prev.innerHTML = String(Number(prev.innerHTML) - Number(outcome.innerHTML));
+			$("#prev").html(String(Number($("#prev").html()) - Number($("#outcome").html())));
 			break;
 
 		case "*":
-			prev.innerHTML = String(Number(prev.innerHTML) * Number(outcome.innerHTML));
+			$("#prev").html(String(Number($("#prev").html()) * Number($("#outcome").html())));
 			break;
 
 		case "/":
-			prev.innerHTML = String(Number(prev.innerHTML) / Number(outcome.innerHTML));
+			$("#prev").html(String(Number($("#prev").html()) / Number($("#outcome").html())));
 			break;
 	}
 
 	operation = null;
-	console.log(prev.innerHTML);
+	console.log($("#prev").html());
 }
 
 function sqrt () {
-	outcome.innerHTML = Math.sqrt(Number(outcome.innerHTML));
+	$('#outcome').html(Math.sqrt(Number($('#outcome').html())));
 }
 
 function sqr () {
-	outcome.innerHTML = Number(outcome.innerHTML) * Number(outcome.innerHTML);
+	$('#outcome').html(Number($('#outcome').html()) * Number($('#outcome').html()));
 }
 
 function reverse () {
-	if (outcome.innerHTML != "0")
-		outcome.innerHTML = 1 / Number(outcome.innerHTML);
+	if ($('#outcome').html() != "0")
+		$('#outcome').html(1 / Number($('#outcome').html()));
 }
 
 function C () {
-	prev.innerHTML = 0;
+	$('#prev').html('0');
 	operation = null;
-	outcome.innerHTML = "0";
+	$('#outcome').html('0');
 }
 
 function CE () {
-	outcome.innerHTML = "0";
+	$('#outcome').html('0');
 }
 
 function percent () {
-	outcome.innerHTML = (Number(prev.innerHTML) / 100) * Number(outcome.innerHTML)
+	$('#outcome').html((Number($("#prev").html()) / 100) * Number($('#outcome').html()));
 }
 
 function copy () {
-	navigator.clipboard.writeText(prev.innerHTML);
+	navigator.clipboard.writeText($("#prev").html());
 }
 
 function makeTable(data) {
-	count.innerHTML = `
+	 $('#count').html(`
 	<table>
 		<tr>
 			<td>0<td>
@@ -160,5 +189,5 @@ function makeTable(data) {
 			<td>${data[9].count}</td>
 		</tr>
 	</table>
-	`;
+	`);
 }
